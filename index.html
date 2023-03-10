@@ -1,17 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Simple-Calculator</title>
 </head>
+
 <body>
     <div class="wrapper">
         <div class="input-first">
-            <input type="number">
+            <input type="number" id="firstValue"> 
+        </div>
+        <br>
+        <div class="input-second">
+            <input type="number" id="secondValue">
+        </div>
+        <br>
+        <div class="tools">
+            <div class="plus">
+                <button id="btn_plus">+</button>
+            </div>
+            <div class="minus">
+                <button>-</button>
+            </div>
+            <div class="power">
+                <button>*</button>
+            </div>
+            <div class="divide">
+                <button>/</button>
+            </div>
+        </div>
+        <br>
+
+        <div class="output">
             
         </div>
+
     </div>
+    <script>
+        class Cal {
+            constructor(first, second) {
+                this.first = first;
+                this.second = second;
+            }
+            plus() {
+                return this.first + this.second;
+            }
+            minus() {
+                return this.first - this.second;
+            }
+            power() {
+                return this.first * this.second;
+            }
+            divide() {
+                return this.first / this.second;
+            }
+        }   //사칙연산 기능 클래스
+
+        var left=document.getElementById('firstValue').value;
+        var right=document.getElementById('secondValue').value;
+        var conc = new Cal(left,right);
+       
+       
+        $('.plus').click(function(){
+            console.log(document.getElementById('firstValue').value);
+            console.log(document.getElementById('secondValue').value);
+            document.querySelector('.output').innerHTML='';
+            $('.output').append('결과: '+conc.plus());
+        });
+        $('.minus').click(function(){
+            document.querySelector('.output').innerHTML='';
+            $('.output').append('결과: '+conc.minus());
+        });
+        $('.power').click(function(){
+            document.querySelector('.output').innerHTML='';
+            $('.output').append('결과: '+conc.power());
+        });
+        $('.divide').click(function(){
+            document.querySelector('.output').innerHTML='';
+            $('.output').append('결과: '+conc.divide());
+        });
+
+    </script>
 </body>
+
 </html>
