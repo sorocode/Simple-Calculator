@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,6 +13,9 @@
     <input type="number" class="textValue" id="in2">
     <button class="btnplus" onclick="printPlus()">+</button>
     <button class="btnminus" onclick="printMinus()">-</button>
+    <button class="btnmulti" onclick="printMulti()">X</button>
+    <button class="btndivide" onclick="printdivide()">÷</button>
+
     <div class="output">
     </div>
     <script>
@@ -27,11 +30,14 @@
             minus() {
                 return this.left - this.right;
             }
-
+            multi(){
+                return this.left*this.right;
+            }
+            divide(){
+                return this.left/this.right;
+            }
         }
-
-
-
+       
         function printPlus() {
             let a = Number(document.getElementById('in1').value);
             let b = Number(document.getElementById('in2').value);
@@ -47,7 +53,62 @@
             document.querySelector('.output').innerHTML = '';
             document.querySelector('.output').insertAdjacentHTML('beforeend', out.minus())
         }
+        function printMulti() {
+            let a = document.getElementById('in1').value;
+            let b = document.getElementById('in2').value;
+            const out = new Cal(a, b);
+            document.querySelector('.output').innerHTML = '';
+            document.querySelector('.output').insertAdjacentHTML('beforeend', out.multi())
+        }
+        function printdivide() {
+            let a = document.getElementById('in1').value;
+            let b = document.getElementById('in2').value;
+            const out = new Cal(a, b);
+            document.querySelector('.output').innerHTML = '';
+            document.querySelector('.output').insertAdjacentHTML('beforeend', out.divide())
+        }
+
     </script>
 </body>
 
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Calculator</title>
+</head>
+<body>
+    <input type="number" id="input1">
+    <input type="number" id="input2">
+    <button onclick="calculate('+')">+</button>
+    <button onclick="calculate('-')">-</button>
+    <button onclick="calculate('*')">X</button>
+    <button onclick="calculate('/')">÷</button>
+    <div id="output"></div>
+    <script>
+        function calculate(operator) {
+            const num1 = Number(document.getElementById('input1').value);
+            const num2 = Number(document.getElementById('input2').value);
+            let result = '';
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                default:
+                    result = 'Invalid operator';
+            }
+            document.getElementById('output').textContent = result;
+        }
+    </script>
+</body>
 </html>
